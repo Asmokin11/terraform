@@ -1,0 +1,48 @@
+docker@WL-C3CL7C3:~/Docker/repos/poc_symlink/XS2A_POC-Terraform$ gcloud alpha monitoring policies create  --notification-channels=13833838996189493852 --aggregation='{"alignmentPeriod": "60s","perSeriesAligner": "ALIGN_DELTA"}' --condition-display-name='vpc-route-alert' --condition-filter='metric.type="logging.googleapis.com/user/vpc-route"' --duration='0s' --if='>0' --display-name='vpc-route-alert' --combiner='OR' --l
+og-http
+=======================
+==== request start ====
+uri: https://monitoring.googleapis.com/v3/projects/deu-xs2a-poc-dev-ob-2/alertPolicies?alt=json
+method: POST
+== headers start ==
+b'X-Goog-User-Project': b'deu-xs2a-poc-dev-ob-2'
+b'accept': b'application/json'
+b'accept-encoding': b'gzip, deflate'
+b'authorization': --- Token Redacted ---
+b'content-length': b'450'
+b'content-type': b'application/json'
+b'user-agent': b'google-cloud-sdk gcloud/412.0.0 command/gcloud.alpha.monitoring.policies.create invocation-id/ceb43660bde0491bac3d9332f70cf0b1 environment/None environment-version/None interactive/True from-script/False python/3.9.12 term/xterm-256color (Linux 5.10.102.1-microsoft-standard-WSL2)'
+== headers end ==
+== body start ==
+{"combiner": "OR", "conditions": [{"conditionThreshold": {"aggregations": [{"alignmentPeriod": "60s", "perSeriesAligner": "ALIGN_DELTA"}], "comparison": "COMPARISON_GT", "duration": "0s", "filter": "metric.type=\"logging.googleapis.com/user/vpc-route\"", "thresholdValue": 0.0}, "displayName": "vpc-route-alert"}], "displayName": "vpc-route-alert", "notificationChannels": ["projects/deu-xs2a-poc-dev-ob-2/notificationChannels/13833838996189493852"]}
+== body end ==
+==== request end ====
+---- response start ----
+status: 400
+-- headers start --
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+Cache-Control: private
+Content-Encoding: gzip
+Content-Type: application/json; charset=UTF-8
+Date: Fri, 06 Jan 2023 08:19:48 GMT
+Server: ESF
+Transfer-Encoding: chunked
+Vary: Origin, X-Origin, Referer
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 0
+-- headers end --
+-- body start --
+{
+  "error": {
+    "code": 400,
+    "message": "Field alert_policy.conditions[0].condition_threshold.filter had an invalid value of \"metric.type=\"logging.googleapis.com/user/vpc-route\"\": must specify a restriction on \"resource.type\" in the filter; see \"https://cloud.google.com/monitoring/api/resources\" for a list of available resource types.",
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+-- body end --
+total round trip time (request+response): 0.452 secs
+---- response end ----
+----------------------
+ERROR: (gcloud.alpha.monitoring.policies.create) INVALID_ARGUMENT: Field alert_policy.conditions[0].condition_threshold.filter had an invalid value of "metric.type="logging.googleapis.com/user/vpc-route"": must specify a restriction on "resource.type" in the filter; see "https://cloud.google.com/monitoring/api/resources" for a list of available resource types.
